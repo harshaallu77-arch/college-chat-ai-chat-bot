@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CampusConnect AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <div class="page-glow glow-left"></div>
+    <div class="page-glow glow-right"></div>
+
+    <div class="app-shell">
+      <aside class="sidebar card">
+        <div class="brand">
+          <div class="brand-mark">CC</div>
+          <div>
+            <p class="eyebrow">College AI Assistant</p>
+            <h1>CampusConnect AI</h1>
+            <p class="muted">
+              A student help desk for admissions, fees, academics, hostel, and campus life.
+            </p>
+          </div>
+        </div>
+
+        <section class="info-block">
+          <p class="section-label">Capabilities</p>
+          <div class="info-list">
+            <div class="info-chip">Admissions guidance</div>
+            <div class="info-chip">Course and exam support</div>
+            <div class="info-chip">Fees and scholarship help</div>
+            <div class="info-chip">Hostel and transport info</div>
+          </div>
+        </section>
+
+        <section class="info-block">
+          <p class="section-label">Suggested topics</p>
+          <div id="topicList" class="topic-list"></div>
+        </section>
+
+        <section class="info-block">
+          <p class="section-label">Assistant rules</p>
+          <ul class="rule-list">
+            <li>Answers use the local college knowledge base.</li>
+            <li>Unknown questions are flagged for staff follow-up.</li>
+            <li>Admin can update FAQs from the panel below.</li>
+          </ul>
+        </section>
+      </aside>
+
+      <main class="workspace">
+        <section class="hero card">
+          <div>
+            <p class="eyebrow">Student support</p>
+            <h2>One chatbot for your whole campus</h2>
+            <p class="hero-copy">
+              Give students instant answers about classes, events, departments, placements, leave
+              policies, hostel timings, and more.
+            </p>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-box">
+              <span class="stat-label">Knowledge entries</span>
+              <strong id="knowledgeCount">0</strong>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Unanswered questions</span>
+              <strong id="pendingCount">0</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace-grid">
+          <section class="chat-panel card">
+            <div class="panel-head">
+              <div>
+                <p class="section-label">Live chat</p>
+                <h3>Ask the college assistant</h3>
+              </div>
+              <button id="clearChatButton" class="ghost-button" type="button">Clear chat</button>
+            </div>
+
+            <div id="quickPrompts" class="quick-prompts"></div>
+
+            <div id="chatMessages" class="chat-messages" aria-live="polite"></div>
+
+            <form id="chatForm" class="chat-form">
+              <label class="sr-only" for="chatInput">Ask a question</label>
+              <input
+                id="chatInput"
+                type="text"
+                placeholder="Ask about admissions, exam dates, hostel fees, library timings..."
+                autocomplete="off"
+              />
+              <button class="primary-button" type="submit">Send</button>
+            </form>
+          </section>
+
+          <section class="side-stack">
+            <section class="knowledge-panel card">
+              <div class="panel-head">
+                <div>
+                  <p class="section-label">Knowledge base</p>
+                  <h3>College information</h3>
+                </div>
+              </div>
+              <div id="knowledgeList" class="knowledge-list"></div>
+            </section>
+
+            <section class="admin-panel card">
+              <div class="panel-head">
+                <div>
+                  <p class="section-label">Admin tools</p>
+                  <h3>Update chatbot answers</h3>
+                </div>
+              </div>
+
+              <form id="adminForm" class="admin-form">
+                <label>
+                  Topic
+                  <input id="adminTopic" type="text" placeholder="Example: hostel fees" />
+                </label>
+                <label>
+                  Keywords
+                  <input id="adminKeywords" type="text" placeholder="Comma separated words" />
+                </label>
+                <label>
+                  Answer
+                  <textarea
+                    id="adminAnswer"
+                    rows="5"
+                    placeholder="Write the answer the chatbot should give students."
+                  ></textarea>
+                </label>
+                <button class="primary-button" type="submit">Save answer</button>
+              </form>
+
+              <div class="pending-panel">
+                <div class="pending-head">
+                  <p class="section-label">Needs review</p>
+                  <button id="clearPendingButton" class="ghost-button" type="button">
+                    Clear list
+                  </button>
+                </div>
+                <div id="pendingQuestions" class="pending-questions"></div>
+              </div>
+            </section>
+          </section>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
